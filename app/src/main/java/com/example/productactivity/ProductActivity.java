@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +29,7 @@ public class ProductActivity extends AppCompatActivity {
     ImageView productImage;
     private Object Bitmap;
     private static final int REQUEST_CODE = 900;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,12 +133,34 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
     private void sendEmail(){
-        String subject = "ooikpolo";
+        String subject = productName.getText().toString();
         String text ="i noticed an issue with the product"+subject;
         Intent i= new Intent(Intent.ACTION_SEND);
-        i.putExtra(Intent.EXTRA_SUBJECT, subject);
-        i.putExtra(Intent.EXTRA_TEXT,text);
+        i.setType("message/rfc2822");
+        i.putExtra(Intent.EXTRA_SUBJECT,"Faulty system");
+        i.putExtra(Intent.EXTRA_TEXT,"System not working");
         startActivity(i);
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId=item.getItemId();
+        switch(itemId)
+        {
+            case R.id.admin_email: {
+                sendEmail();
+                break;
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
