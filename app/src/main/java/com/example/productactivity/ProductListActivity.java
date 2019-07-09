@@ -115,10 +115,10 @@ public class ProductListActivity extends AppCompatActivity {
         outState.putInt("position",position);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
 }
